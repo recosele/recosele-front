@@ -1,0 +1,9 @@
+**/*.md
+**/*.svg
+**/*.ejs
+**/*.html
+packages/**/package.json
+packages/**/.umi
+packages/**/.umi-production
+packages/**/.umi-test
+public

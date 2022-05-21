@@ -1,0 +1,27 @@
+.vscode
+.idea
+node_modules
+yarn.lock
+lerna-debug.log
+dump.rdb
+
+# dependencies
+packages/**/public
+packages/**/node_modules
+packages/**/npm-debug.log*
+packages/**/yarn-error.log
+packages/**/yarn.lock
+packages/**/package-lock.json
+
+# production
+public/prod
+public/dev
+
+# misc
+**/.DS_Store
+
+# umi
+packages/**/src/.umi
+packages/**/src/.umi-production
+packages/**/src/.umi-test
+packages/**/.env.local

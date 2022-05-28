@@ -1890,32 +1890,47 @@ var app = (function () {
     const { console: console_1 } = globals;
     const file$1 = "src/routes/camera.svelte";
 
-    // (72:4) {:else}
+    // (73:4) {:else}
     function create_else_block(ctx) {
-    	let button;
+    	let button0;
+    	let t1;
+    	let button1;
     	let mounted;
     	let dispose;
 
     	const block = {
     		c: function create() {
-    			button = element("button");
-    			button.textContent = "icon";
-    			attr_dev(button, "class", "button is-rounded");
-    			add_location(button, file$1, 72, 6, 2577);
+    			button0 = element("button");
+    			button0.textContent = "icon";
+    			t1 = space();
+    			button1 = element("button");
+    			button1.textContent = "start";
+    			attr_dev(button0, "class", "button is-rounded");
+    			add_location(button0, file$1, 73, 6, 2600);
+    			attr_dev(button1, "class", "button is-rounded");
+    			add_location(button1, file$1, 74, 6, 2679);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, button, anchor);
+    			insert_dev(target, button0, anchor);
+    			insert_dev(target, t1, anchor);
+    			insert_dev(target, button1, anchor);
 
     			if (!mounted) {
-    				dispose = listen_dev(button, "click", /*capture*/ ctx[1], false, false, false);
+    				dispose = [
+    					listen_dev(button0, "click", /*handleCapture*/ ctx[1], false, false, false),
+    					listen_dev(button1, "click", handleStart, false, false, false)
+    				];
+
     				mounted = true;
     			}
     		},
     		p: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(button);
+    			if (detaching) detach_dev(button0);
+    			if (detaching) detach_dev(t1);
+    			if (detaching) detach_dev(button1);
     			mounted = false;
-    			dispose();
+    			run_all(dispose);
     		}
     	};
 
@@ -1923,14 +1938,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(72:4) {:else}",
+    		source: "(73:4) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (69:4) {#if image}
+    // (70:4) {#if image}
     function create_if_block(ctx) {
     	let button0;
     	let t1;
@@ -1946,9 +1961,9 @@ var app = (function () {
     			button1 = element("button");
     			button1.textContent = "確定";
     			attr_dev(button0, "class", "button is-rounded");
-    			add_location(button0, file$1, 69, 6, 2403);
+    			add_location(button0, file$1, 70, 6, 2426);
     			attr_dev(button1, "class", "button is-rounded is-success");
-    			add_location(button1, file$1, 70, 6, 2482);
+    			add_location(button1, file$1, 71, 6, 2505);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button0, anchor);
@@ -1978,7 +1993,7 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(69:4) {#if image}",
+    		source: "(70:4) {#if image}",
     		ctx
     	});
 
@@ -2015,20 +2030,20 @@ var app = (function () {
     			if_block.c();
     			attr_dev(canvas, "id", "canvas");
     			attr_dev(canvas, "class", "svelte-rdh3jv");
-    			add_location(canvas, file$1, 63, 2, 2214);
-    			if (!src_url_equal(track.src, track_src_value = "captions_es.vtt")) attr_dev(track, "src", track_src_value);
+    			add_location(canvas, file$1, 64, 2, 2269);
+    			if (!src_url_equal(track.src, track_src_value = "")) attr_dev(track, "src", track_src_value);
     			attr_dev(track, "kind", "captions");
-    			attr_dev(track, "srclang", "es");
-    			attr_dev(track, "label", "spanish_captions");
-    			add_location(track, file$1, 65, 4, 2263);
+    			add_location(track, file$1, 66, 4, 2339);
     			attr_dev(video, "id", "camera");
+    			video.autoplay = true;
+    			video.playsInline = true;
     			attr_dev(video, "class", "svelte-rdh3jv");
-    			add_location(video, file$1, 64, 2, 2239);
+    			add_location(video, file$1, 65, 2, 2294);
     			attr_dev(div0, "id", "actions");
     			attr_dev(div0, "class", "svelte-rdh3jv");
-    			add_location(div0, file$1, 67, 2, 2362);
+    			add_location(div0, file$1, 68, 2, 2385);
     			attr_dev(div1, "class", "container svelte-rdh3jv");
-    			add_location(div1, file$1, 62, 0, 2188);
+    			add_location(div1, file$1, 63, 0, 2243);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2084,11 +2099,7 @@ var app = (function () {
     		const audioTracks = stream.getAudioTracks();
     		console.log('使用的设备是:' + audioTracks[0]);
     		videoRef.srcObject = stream;
-
-    		videoRef.onloadedmetadata = function () {
-    			videoRef.pause();
-    			videoRef.play();
-    		};
+    		await videoRef.play();
     	} catch(error) {
     		if (error.name === 'ConstraintNotSatisfiedError') {
     			let videoRef = document.getElementById('camera');
@@ -2106,6 +2117,11 @@ var app = (function () {
     	}
     }
 
+    function handleStart() {
+    	let videoRef = document.getElementById('camera');
+    	videoRef.play();
+    }
+
     function instance$2($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Camera', slots, []);
@@ -2116,10 +2132,13 @@ var app = (function () {
     	let h = document.documentElement.clientHeight;
 
     	onMount(async () => {
-    		await openCamera({ audio: false, video: true });
+    		await openCamera({
+    			audio: false,
+    			video: { facingMode: { exact: 'environment' } }
+    		});
     	});
 
-    	function capture() {
+    	function handleCapture() {
     		let videoRef = document.getElementById('camera');
     		let canvasRef = document.getElementById('canvas');
     		w = canvasRef.width = videoRef.videoWidth;
@@ -2164,7 +2183,8 @@ var app = (function () {
     		w,
     		h,
     		openCamera,
-    		capture,
+    		handleStart,
+    		handleCapture,
     		handleCancel,
     		handleOK
     	});
@@ -2180,7 +2200,7 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [image, capture, handleCancel, handleOK];
+    	return [image, handleCapture, handleCancel, handleOK];
     }
 
     class Camera extends SvelteComponentDev {

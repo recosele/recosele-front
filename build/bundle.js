@@ -1901,7 +1901,7 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "icon";
     			attr_dev(button, "class", "button is-rounded");
-    			add_location(button, file$1, 72, 6, 2592);
+    			add_location(button, file$1, 72, 6, 2577);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -1946,9 +1946,9 @@ var app = (function () {
     			button1 = element("button");
     			button1.textContent = "確定";
     			attr_dev(button0, "class", "button is-rounded");
-    			add_location(button0, file$1, 69, 6, 2418);
+    			add_location(button0, file$1, 69, 6, 2403);
     			attr_dev(button1, "class", "button is-rounded is-success");
-    			add_location(button1, file$1, 70, 6, 2497);
+    			add_location(button1, file$1, 70, 6, 2482);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button0, anchor);
@@ -2015,20 +2015,20 @@ var app = (function () {
     			if_block.c();
     			attr_dev(canvas, "id", "canvas");
     			attr_dev(canvas, "class", "svelte-rdh3jv");
-    			add_location(canvas, file$1, 63, 2, 2229);
+    			add_location(canvas, file$1, 63, 2, 2214);
     			if (!src_url_equal(track.src, track_src_value = "captions_es.vtt")) attr_dev(track, "src", track_src_value);
     			attr_dev(track, "kind", "captions");
     			attr_dev(track, "srclang", "es");
     			attr_dev(track, "label", "spanish_captions");
-    			add_location(track, file$1, 65, 4, 2278);
+    			add_location(track, file$1, 65, 4, 2263);
     			attr_dev(video, "id", "camera");
     			attr_dev(video, "class", "svelte-rdh3jv");
-    			add_location(video, file$1, 64, 2, 2254);
+    			add_location(video, file$1, 64, 2, 2239);
     			attr_dev(div0, "id", "actions");
     			attr_dev(div0, "class", "svelte-rdh3jv");
-    			add_location(div0, file$1, 67, 2, 2377);
+    			add_location(div0, file$1, 67, 2, 2362);
     			attr_dev(div1, "class", "container svelte-rdh3jv");
-    			add_location(div1, file$1, 62, 0, 2203);
+    			add_location(div1, file$1, 62, 0, 2188);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2085,7 +2085,7 @@ var app = (function () {
     		console.log('使用的设备是:' + audioTracks[0]);
     		videoRef.srcObject = stream;
 
-    		videoRef.onloadedmetadata = function (e) {
+    		videoRef.onloadedmetadata = function () {
     			videoRef.pause();
     			videoRef.play();
     		};
@@ -2116,7 +2116,7 @@ var app = (function () {
     	let h = document.documentElement.clientHeight;
 
     	onMount(async () => {
-    		await openCamera({ audio: true, video: true });
+    		await openCamera({ audio: false, video: true });
     	});
 
     	function capture() {
@@ -2131,7 +2131,7 @@ var app = (function () {
     	function handleCancel() {
     		let canvasRef = document.getElementById('canvas');
     		canvasRef.getContext('2d').clearRect(0, 0, w, h);
-    		images[targetIndex].set('');
+    		$$invalidate(0, image = null);
     	}
 
     	async function handleOK() {

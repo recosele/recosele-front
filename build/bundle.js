@@ -1665,7 +1665,7 @@ var app = (function () {
     		c: function create() {
     			main = element("main");
     			h1 = element("h1");
-    			h1.textContent = "オンライン本人確認";
+    			h1.textContent = "オンライン本人確認1";
     			t1 = space();
     			h6 = element("h6");
     			h6.textContent = "ご用意頂いた「顔写真付本人確認書類」を選択頂き、WEBカメラを使用して撮影shてください。";
@@ -1695,35 +1695,35 @@ var app = (function () {
     			attr_dev(h1, "class", "title is-info");
     			add_location(h1, file$2, 15, 2, 292);
     			attr_dev(h6, "class", "subtitle is-6");
-    			add_location(h6, file$2, 16, 2, 335);
+    			add_location(h6, file$2, 16, 2, 336);
     			attr_dev(p, "class", "card-header-title");
-    			add_location(p, file$2, 21, 6, 480);
+    			add_location(p, file$2, 21, 6, 481);
     			attr_dev(header, "class", "card-header");
-    			add_location(header, file$2, 20, 4, 445);
+    			add_location(header, file$2, 20, 4, 446);
     			attr_dev(input0, "type", "radio");
     			input0.__value = 1;
     			input0.value = input0.__value;
     			/*$$binding_groups*/ ctx[4][0].push(input0);
-    			add_location(input0, file$2, 27, 12, 636);
-    			add_location(label0, file$2, 26, 10, 616);
+    			add_location(input0, file$2, 27, 12, 637);
+    			add_location(label0, file$2, 26, 10, 617);
     			attr_dev(input1, "type", "radio");
     			input1.__value = 2;
     			input1.value = input1.__value;
     			/*$$binding_groups*/ ctx[4][0].push(input1);
-    			add_location(input1, file$2, 31, 12, 758);
-    			add_location(label1, file$2, 30, 10, 738);
+    			add_location(input1, file$2, 31, 12, 759);
+    			add_location(label1, file$2, 30, 10, 739);
     			attr_dev(input2, "type", "checkbox");
-    			add_location(input2, file$2, 35, 12, 880);
-    			add_location(label2, file$2, 34, 10, 860);
+    			add_location(input2, file$2, 35, 12, 881);
+    			add_location(label2, file$2, 34, 10, 861);
     			attr_dev(button, "class", "button is-danger is-light");
-    			add_location(button, file$2, 38, 10, 976);
-    			add_location(form, file$2, 25, 8, 599);
+    			add_location(button, file$2, 38, 10, 977);
+    			add_location(form, file$2, 25, 8, 600);
     			attr_dev(div0, "class", "content");
-    			add_location(div0, file$2, 24, 6, 569);
+    			add_location(div0, file$2, 24, 6, 570);
     			attr_dev(div1, "class", "card-content");
-    			add_location(div1, file$2, 23, 4, 536);
+    			add_location(div1, file$2, 23, 4, 537);
     			attr_dev(div2, "class", "card");
-    			add_location(div2, file$2, 19, 2, 422);
+    			add_location(div2, file$2, 19, 2, 423);
     			attr_dev(main, "class", "main svelte-102rri7");
     			add_location(main, file$2, 14, 0, 270);
     		},
@@ -1890,7 +1890,7 @@ var app = (function () {
     const { console: console_1 } = globals;
     const file$1 = "src/routes/camera.svelte";
 
-    // (70:4) {:else}
+    // (75:4) {:else}
     function create_else_block(ctx) {
     	let button;
     	let mounted;
@@ -1901,7 +1901,7 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "icon";
     			attr_dev(button, "class", "button is-rounded");
-    			add_location(button, file$1, 70, 6, 2459);
+    			add_location(button, file$1, 75, 6, 2737);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -1923,14 +1923,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(70:4) {:else}",
+    		source: "(75:4) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (67:4) {#if image}
+    // (72:4) {#if image}
     function create_if_block(ctx) {
     	let button0;
     	let t1;
@@ -1946,9 +1946,9 @@ var app = (function () {
     			button1 = element("button");
     			button1.textContent = "確定";
     			attr_dev(button0, "class", "button is-rounded");
-    			add_location(button0, file$1, 67, 6, 2285);
+    			add_location(button0, file$1, 72, 6, 2563);
     			attr_dev(button1, "class", "button is-rounded is-success");
-    			add_location(button1, file$1, 68, 6, 2364);
+    			add_location(button1, file$1, 73, 6, 2642);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button0, anchor);
@@ -1978,7 +1978,7 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(67:4) {#if image}",
+    		source: "(72:4) {#if image}",
     		ctx
     	});
 
@@ -2015,22 +2015,20 @@ var app = (function () {
     			if_block.c();
     			attr_dev(canvas, "id", "canvas");
     			attr_dev(canvas, "class", "svelte-rdh3jv");
-    			add_location(canvas, file$1, 61, 2, 2075);
+    			add_location(canvas, file$1, 66, 2, 2374);
     			if (!src_url_equal(track.src, track_src_value = "captions_es.vtt")) attr_dev(track, "src", track_src_value);
     			attr_dev(track, "kind", "captions");
     			attr_dev(track, "srclang", "es");
     			attr_dev(track, "label", "spanish_captions");
-    			add_location(track, file$1, 63, 4, 2145);
+    			add_location(track, file$1, 68, 4, 2423);
     			attr_dev(video, "id", "camera");
-    			video.autoplay = true;
-    			video.playsInline = true;
     			attr_dev(video, "class", "svelte-rdh3jv");
-    			add_location(video, file$1, 62, 2, 2100);
+    			add_location(video, file$1, 67, 2, 2399);
     			attr_dev(div0, "id", "actions");
     			attr_dev(div0, "class", "svelte-rdh3jv");
-    			add_location(div0, file$1, 65, 2, 2244);
+    			add_location(div0, file$1, 70, 2, 2522);
     			attr_dev(div1, "class", "container svelte-rdh3jv");
-    			add_location(div1, file$1, 60, 0, 2049);
+    			add_location(div1, file$1, 65, 0, 2348);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2077,51 +2075,56 @@ var app = (function () {
     	return block;
     }
 
+    async function openCamera(constraints) {
+    	try {
+    		let videoRef = document.getElementById('camera');
+    		const stream = await navigator.mediaDevices.getUserMedia(constraints);
+    		const videoTracks = stream.getVideoTracks();
+    		console.log('使用的设备是:' + videoTracks[0]);
+    		const audioTracks = stream.getAudioTracks();
+    		console.log('使用的设备是:' + audioTracks[0]);
+    		videoRef.srcObject = stream;
+
+    		videoRef.onloadedmetadata = function (e) {
+    			videoRef.pause();
+    			videoRef.play();
+    		};
+    	} catch(error) {
+    		if (error.name === 'ConstraintNotSatisfiedError') {
+    			let videoRef = document.getElementById('camera');
+
+    			console.log(`宽:${videoRef === null || videoRef === void 0
+			? void 0
+			: videoRef.width} 高:${videoRef === null || videoRef === void 0
+			? void 0
+			: videoRef.height} 设备不支持`);
+    		} else if (error.name === 'PermissionDeniedError') {
+    			console.log('没有摄像头和麦克风的使用权限,请点击允许按钮');
+    		}
+
+    		console.log('getUserMedia错误:', error);
+    	}
+    }
+
     function instance$2($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Camera', slots, []);
-    	let videoRef = document.getElementById('camera');
-    	let canvasRef = document.getElementById('canvas');
     	const images = [frontImg1, frontImg2, backImg];
     	let targetIndex = 0;
     	let image = null;
     	let w = document.documentElement.clientWidth;
     	let h = document.documentElement.clientHeight;
 
-    	async function openCamera(constraints) {
-    		try {
-    			const stream = await navigator.mediaDevices.getUserMedia(constraints);
-    			const videoTracks = stream.getVideoTracks();
-    			console.log('使用的设备是:' + videoTracks[0]);
-    			const audioTracks = stream.getAudioTracks();
-    			console.log('使用的设备是:' + audioTracks[0]);
-    			console.log(stream);
-    			videoRef.srcObject = stream;
-
-    			videoRef.onloadedmetadata = function (e) {
-    				videoRef.pause();
-    				videoRef.play();
-    			};
-    		} catch(error) {
-    			if (error.name === 'ConstraintNotSatisfiedError') {
-    				console.log(`宽:${videoRef === null || videoRef === void 0
-				? void 0
-				: videoRef.width} 高:${videoRef === null || videoRef === void 0
-				? void 0
-				: videoRef.height} 设备不支持`);
-    			} else if (error.name === 'PermissionDeniedError') {
-    				console.log('没有摄像头和麦克风的使用权限,请点击允许按钮');
-    			}
-
-    			console.log('getUserMedia错误:', error);
-    		}
-    	}
-
     	onMount(async () => {
-    		await openCamera({ audio: true, video: true });
+    		await openCamera({
+    			audio: true,
+    			video: { facingMode: { exact: 'environment' } }
+    		});
     	});
 
     	function capture() {
+    		let videoRef = document.getElementById('camera');
+    		let canvasRef = document.getElementById('canvas');
     		w = canvasRef.width = videoRef.videoWidth;
     		h = canvasRef.height = videoRef.videoHeight;
     		canvasRef.getContext('2d').drawImage(videoRef, 0, 0, w, h);
@@ -2129,6 +2132,7 @@ var app = (function () {
     	}
 
     	function handleCancel() {
+    		let canvasRef = document.getElementById('canvas');
     		canvasRef.getContext('2d').clearRect(0, 0, w, h);
     		images[targetIndex].set('');
     	}
@@ -2137,6 +2141,13 @@ var app = (function () {
     		images[targetIndex].set(image);
     		$$invalidate(0, image = null);
     		targetIndex++;
+
+    		if (targetIndex === 3) {
+    			await openCamera({
+    				audio: true,
+    				video: { facingMode: 'user' }
+    			});
+    		}
 
     		if (images[targetIndex]) {
     			handleCancel();
@@ -2157,8 +2168,6 @@ var app = (function () {
     		frontImg1,
     		frontImg2,
     		backImg,
-    		videoRef,
-    		canvasRef,
     		images,
     		targetIndex,
     		image,
@@ -2171,8 +2180,6 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ('videoRef' in $$props) videoRef = $$props.videoRef;
-    		if ('canvasRef' in $$props) canvasRef = $$props.canvasRef;
     		if ('targetIndex' in $$props) targetIndex = $$props.targetIndex;
     		if ('image' in $$props) $$invalidate(0, image = $$props.image);
     		if ('w' in $$props) w = $$props.w;

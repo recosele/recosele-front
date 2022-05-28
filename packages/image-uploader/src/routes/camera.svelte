@@ -18,10 +18,7 @@
       const audioTracks = stream.getAudioTracks();
       console.log('使用的设备是:' + audioTracks[0]);
       videoRef.srcObject = stream;
-      videoRef.onloadedmetadata = function () {
-        videoRef.pause();
-        videoRef.play();
-      };
+      await videoRef.play();
     } catch (error) {
       if (error.name === 'ConstraintNotSatisfiedError') {
         let videoRef = document.getElementById('camera') as HTMLVideoElement;
@@ -33,9 +30,13 @@
     }
   }
   onMount(async () => {
-    await openCamera({ audio: false, video: true });
+    await openCamera({ audio: false, video: { facingMode: { exact: 'environment' } } });
   });
-  function capture() {
+  function handleStart() {
+    let videoRef = document.getElementById('camera') as HTMLVideoElement;
+    videoRef.play();
+  }
+  function handleCapture() {
     let videoRef = document.getElementById('camera') as HTMLVideoElement;
     let canvasRef = document.getElementById('canvas') as HTMLCanvasElement;
     w = canvasRef.width = videoRef.videoWidth;
@@ -62,15 +63,16 @@
 
 <div class="container">
   <canvas id="canvas" />
-  <video id="camera">
-    <track src="captions_es.vtt" kind="captions" srclang="es" label="spanish_captions" />
+  <video id="camera" autoplay playsinline>
+    <track src="" kind="captions" />
   </video>
   <div id="actions">
     {#if image}
       <button class="button is-rounded" on:click={handleCancel}>キャンセル</button>
       <button class="button is-rounded is-success" on:click={handleOK}>確定</button>
     {:else}
-      <button class="button is-rounded" on:click={capture}>icon</button>
+      <button class="button is-rounded" on:click={handleCapture}>icon</button>
+      <button class="button is-rounded" on:click={handleStart}>start</button>
     {/if}
   </div>
 </div>

@@ -1,5 +1,5 @@
 
-(function(l, r) { if (!l || l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (self.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(self.document);
+(function(l, r) { if (!l || l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (self.location.host || 'localhost').split(':')[0] + ':35730/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(self.document);
 var app = (function () {
     'use strict';
 
@@ -1665,10 +1665,10 @@ var app = (function () {
     		c: function create() {
     			main = element("main");
     			h1 = element("h1");
-    			h1.textContent = "オンライン本人確認1";
+    			h1.textContent = "オンライン本人確認";
     			t1 = space();
     			h6 = element("h6");
-    			h6.textContent = "ご用意頂いた「顔写真付本人確認書類」を選択頂き、WEBカメラを使用して撮影shてください。";
+    			h6.textContent = "ご用意頂いた「顔写真付本人確認書類」を選択頂き、WEBカメラを使用して撮影してください。";
     			t3 = space();
     			div2 = element("div");
     			header = element("header");
@@ -1695,35 +1695,35 @@ var app = (function () {
     			attr_dev(h1, "class", "title is-info");
     			add_location(h1, file$2, 15, 2, 292);
     			attr_dev(h6, "class", "subtitle is-6");
-    			add_location(h6, file$2, 16, 2, 336);
+    			add_location(h6, file$2, 16, 2, 335);
     			attr_dev(p, "class", "card-header-title");
-    			add_location(p, file$2, 21, 6, 481);
+    			add_location(p, file$2, 21, 6, 479);
     			attr_dev(header, "class", "card-header");
-    			add_location(header, file$2, 20, 4, 446);
+    			add_location(header, file$2, 20, 4, 444);
     			attr_dev(input0, "type", "radio");
     			input0.__value = 1;
     			input0.value = input0.__value;
     			/*$$binding_groups*/ ctx[4][0].push(input0);
-    			add_location(input0, file$2, 27, 12, 637);
-    			add_location(label0, file$2, 26, 10, 617);
+    			add_location(input0, file$2, 27, 12, 635);
+    			add_location(label0, file$2, 26, 10, 615);
     			attr_dev(input1, "type", "radio");
     			input1.__value = 2;
     			input1.value = input1.__value;
     			/*$$binding_groups*/ ctx[4][0].push(input1);
-    			add_location(input1, file$2, 31, 12, 759);
-    			add_location(label1, file$2, 30, 10, 739);
+    			add_location(input1, file$2, 31, 12, 757);
+    			add_location(label1, file$2, 30, 10, 737);
     			attr_dev(input2, "type", "checkbox");
-    			add_location(input2, file$2, 35, 12, 881);
-    			add_location(label2, file$2, 34, 10, 861);
+    			add_location(input2, file$2, 35, 12, 879);
+    			add_location(label2, file$2, 34, 10, 859);
     			attr_dev(button, "class", "button is-danger is-light");
-    			add_location(button, file$2, 38, 10, 977);
-    			add_location(form, file$2, 25, 8, 600);
+    			add_location(button, file$2, 38, 10, 975);
+    			add_location(form, file$2, 25, 8, 598);
     			attr_dev(div0, "class", "content");
-    			add_location(div0, file$2, 24, 6, 570);
+    			add_location(div0, file$2, 24, 6, 568);
     			attr_dev(div1, "class", "card-content");
-    			add_location(div1, file$2, 23, 4, 537);
+    			add_location(div1, file$2, 23, 4, 535);
     			attr_dev(div2, "class", "card");
-    			add_location(div2, file$2, 19, 2, 423);
+    			add_location(div2, file$2, 19, 2, 421);
     			attr_dev(main, "class", "main svelte-102rri7");
     			add_location(main, file$2, 14, 0, 270);
     		},
@@ -1890,7 +1890,7 @@ var app = (function () {
     const { console: console_1 } = globals;
     const file$1 = "src/routes/camera.svelte";
 
-    // (75:4) {:else}
+    // (72:4) {:else}
     function create_else_block(ctx) {
     	let button;
     	let mounted;
@@ -1901,7 +1901,7 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "icon";
     			attr_dev(button, "class", "button is-rounded");
-    			add_location(button, file$1, 75, 6, 2737);
+    			add_location(button, file$1, 72, 6, 2592);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -1923,14 +1923,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(75:4) {:else}",
+    		source: "(72:4) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (72:4) {#if image}
+    // (69:4) {#if image}
     function create_if_block(ctx) {
     	let button0;
     	let t1;
@@ -1946,9 +1946,9 @@ var app = (function () {
     			button1 = element("button");
     			button1.textContent = "確定";
     			attr_dev(button0, "class", "button is-rounded");
-    			add_location(button0, file$1, 72, 6, 2563);
+    			add_location(button0, file$1, 69, 6, 2418);
     			attr_dev(button1, "class", "button is-rounded is-success");
-    			add_location(button1, file$1, 73, 6, 2642);
+    			add_location(button1, file$1, 70, 6, 2497);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button0, anchor);
@@ -1978,7 +1978,7 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(72:4) {#if image}",
+    		source: "(69:4) {#if image}",
     		ctx
     	});
 
@@ -2015,20 +2015,20 @@ var app = (function () {
     			if_block.c();
     			attr_dev(canvas, "id", "canvas");
     			attr_dev(canvas, "class", "svelte-rdh3jv");
-    			add_location(canvas, file$1, 66, 2, 2374);
+    			add_location(canvas, file$1, 63, 2, 2229);
     			if (!src_url_equal(track.src, track_src_value = "captions_es.vtt")) attr_dev(track, "src", track_src_value);
     			attr_dev(track, "kind", "captions");
     			attr_dev(track, "srclang", "es");
     			attr_dev(track, "label", "spanish_captions");
-    			add_location(track, file$1, 68, 4, 2423);
+    			add_location(track, file$1, 65, 4, 2278);
     			attr_dev(video, "id", "camera");
     			attr_dev(video, "class", "svelte-rdh3jv");
-    			add_location(video, file$1, 67, 2, 2399);
+    			add_location(video, file$1, 64, 2, 2254);
     			attr_dev(div0, "id", "actions");
     			attr_dev(div0, "class", "svelte-rdh3jv");
-    			add_location(div0, file$1, 70, 2, 2522);
+    			add_location(div0, file$1, 67, 2, 2377);
     			attr_dev(div1, "class", "container svelte-rdh3jv");
-    			add_location(div1, file$1, 65, 0, 2348);
+    			add_location(div1, file$1, 62, 0, 2203);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2116,10 +2116,7 @@ var app = (function () {
     	let h = document.documentElement.clientHeight;
 
     	onMount(async () => {
-    		await openCamera({
-    			audio: true,
-    			video: { facingMode: { exact: 'environment' } }
-    		});
+    		await openCamera({ audio: true, video: true });
     	});
 
     	function capture() {
@@ -2141,13 +2138,6 @@ var app = (function () {
     		images[targetIndex].set(image);
     		$$invalidate(0, image = null);
     		targetIndex++;
-
-    		if (targetIndex === 3) {
-    			await openCamera({
-    				audio: true,
-    				video: { facingMode: 'user' }
-    			});
-    		}
 
     		if (images[targetIndex]) {
     			handleCancel();

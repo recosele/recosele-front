@@ -1680,15 +1680,15 @@ var app = (function () {
     			form = element("form");
     			label0 = element("label");
     			input0 = element("input");
-    			t6 = text("\n            以下利用規約に同意");
+    			t6 = text("\n            運転免許証");
     			t7 = space();
     			label1 = element("label");
     			input1 = element("input");
-    			t8 = text("\n            運転免許証");
+    			t8 = text("\n            在留カード");
     			t9 = space();
     			label2 = element("label");
     			input2 = element("input");
-    			t10 = text("\n            在留カード");
+    			t10 = text("\n            以下利用規約に同意");
     			t11 = space();
     			button = element("button");
     			button.textContent = "本人確認を開始";
@@ -1700,26 +1700,26 @@ var app = (function () {
     			add_location(p, file$2, 21, 6, 480);
     			attr_dev(header, "class", "card-header");
     			add_location(header, file$2, 20, 4, 445);
-    			attr_dev(input0, "type", "checkbox");
+    			attr_dev(input0, "type", "radio");
+    			input0.__value = 1;
+    			input0.value = input0.__value;
+    			/*$$binding_groups*/ ctx[4][0].push(input0);
     			add_location(input0, file$2, 27, 12, 636);
     			add_location(label0, file$2, 26, 10, 616);
     			attr_dev(input1, "type", "radio");
-    			input1.__value = 1;
+    			input1.__value = 2;
     			input1.value = input1.__value;
-    			/*$$binding_groups*/ ctx[5][0].push(input1);
-    			add_location(input1, file$2, 31, 12, 752);
-    			add_location(label1, file$2, 30, 10, 732);
-    			attr_dev(input2, "type", "radio");
-    			input2.__value = 2;
-    			input2.value = input2.__value;
-    			/*$$binding_groups*/ ctx[5][0].push(input2);
-    			add_location(input2, file$2, 35, 12, 874);
-    			add_location(label2, file$2, 34, 10, 854);
+    			/*$$binding_groups*/ ctx[4][0].push(input1);
+    			add_location(input1, file$2, 31, 12, 758);
+    			add_location(label1, file$2, 30, 10, 738);
+    			attr_dev(input2, "type", "checkbox");
+    			add_location(input2, file$2, 35, 12, 880);
+    			add_location(label2, file$2, 34, 10, 860);
+    			attr_dev(button, "class", "button is-danger is-light");
+    			add_location(button, file$2, 38, 10, 976);
     			add_location(form, file$2, 25, 8, 599);
     			attr_dev(div0, "class", "content");
     			add_location(div0, file$2, 24, 6, 569);
-    			attr_dev(button, "class", "button is-danger is-light");
-    			add_location(button, file$2, 40, 6, 1001);
     			attr_dev(div1, "class", "card-content");
     			add_location(div1, file$2, 23, 4, 536);
     			attr_dev(div2, "class", "card");
@@ -1745,7 +1745,7 @@ var app = (function () {
     			append_dev(div0, form);
     			append_dev(form, label0);
     			append_dev(label0, input0);
-    			input0.checked = /*yes*/ ctx[1];
+    			input0.checked = input0.__value === /*fileType*/ ctx[0];
     			append_dev(label0, t6);
     			append_dev(form, t7);
     			append_dev(form, label1);
@@ -1755,15 +1755,15 @@ var app = (function () {
     			append_dev(form, t9);
     			append_dev(form, label2);
     			append_dev(label2, input2);
-    			input2.checked = input2.__value === /*fileType*/ ctx[0];
+    			input2.checked = /*yes*/ ctx[1];
     			append_dev(label2, t10);
-    			append_dev(div1, t11);
-    			append_dev(div1, button);
+    			append_dev(form, t11);
+    			append_dev(form, button);
 
     			if (!mounted) {
     				dispose = [
     					listen_dev(input0, "change", /*input0_change_handler*/ ctx[3]),
-    					listen_dev(input1, "change", /*input1_change_handler*/ ctx[4]),
+    					listen_dev(input1, "change", /*input1_change_handler*/ ctx[5]),
     					listen_dev(input2, "change", /*input2_change_handler*/ ctx[6]),
     					listen_dev(button, "click", /*start*/ ctx[2], false, false, false)
     				];
@@ -1772,24 +1772,24 @@ var app = (function () {
     			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*yes*/ 2) {
-    				input0.checked = /*yes*/ ctx[1];
+    			if (dirty & /*fileType*/ 1) {
+    				input0.checked = input0.__value === /*fileType*/ ctx[0];
     			}
 
     			if (dirty & /*fileType*/ 1) {
     				input1.checked = input1.__value === /*fileType*/ ctx[0];
     			}
 
-    			if (dirty & /*fileType*/ 1) {
-    				input2.checked = input2.__value === /*fileType*/ ctx[0];
+    			if (dirty & /*yes*/ 2) {
+    				input2.checked = /*yes*/ ctx[1];
     			}
     		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(main);
-    			/*$$binding_groups*/ ctx[5][0].splice(/*$$binding_groups*/ ctx[5][0].indexOf(input1), 1);
-    			/*$$binding_groups*/ ctx[5][0].splice(/*$$binding_groups*/ ctx[5][0].indexOf(input2), 1);
+    			/*$$binding_groups*/ ctx[4][0].splice(/*$$binding_groups*/ ctx[4][0].indexOf(input0), 1);
+    			/*$$binding_groups*/ ctx[4][0].splice(/*$$binding_groups*/ ctx[4][0].indexOf(input1), 1);
     			mounted = false;
     			run_all(dispose);
     		}
@@ -1830,8 +1830,8 @@ var app = (function () {
     	const $$binding_groups = [[]];
 
     	function input0_change_handler() {
-    		yes = this.checked;
-    		$$invalidate(1, yes);
+    		fileType = this.__value;
+    		$$invalidate(0, fileType);
     	}
 
     	function input1_change_handler() {
@@ -1840,8 +1840,8 @@ var app = (function () {
     	}
 
     	function input2_change_handler() {
-    		fileType = this.__value;
-    		$$invalidate(0, fileType);
+    		yes = this.checked;
+    		$$invalidate(1, yes);
     	}
 
     	$$self.$capture_state = () => ({ push, fileType, yes, showErr, start });
@@ -1861,8 +1861,8 @@ var app = (function () {
     		yes,
     		start,
     		input0_change_handler,
-    		input1_change_handler,
     		$$binding_groups,
+    		input1_change_handler,
     		input2_change_handler
     	];
     }
@@ -1890,7 +1890,7 @@ var app = (function () {
     const { console: console_1 } = globals;
     const file$1 = "src/routes/camera.svelte";
 
-    // (71:4) {:else}
+    // (73:4) {:else}
     function create_else_block(ctx) {
     	let button;
     	let mounted;
@@ -1901,7 +1901,7 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "icon";
     			attr_dev(button, "class", "button is-rounded");
-    			add_location(button, file$1, 71, 6, 2536);
+    			add_location(button, file$1, 73, 6, 2604);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -1923,14 +1923,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(71:4) {:else}",
+    		source: "(73:4) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (68:4) {#if image}
+    // (70:4) {#if image}
     function create_if_block(ctx) {
     	let button0;
     	let t1;
@@ -1946,9 +1946,9 @@ var app = (function () {
     			button1 = element("button");
     			button1.textContent = "確定";
     			attr_dev(button0, "class", "button is-rounded");
-    			add_location(button0, file$1, 68, 6, 2362);
+    			add_location(button0, file$1, 70, 6, 2430);
     			attr_dev(button1, "class", "button is-rounded is-success");
-    			add_location(button1, file$1, 69, 6, 2441);
+    			add_location(button1, file$1, 71, 6, 2509);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button0, anchor);
@@ -1978,7 +1978,7 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(68:4) {#if image}",
+    		source: "(70:4) {#if image}",
     		ctx
     	});
 
@@ -2015,22 +2015,22 @@ var app = (function () {
     			if_block.c();
     			attr_dev(canvas, "id", "canvas");
     			attr_dev(canvas, "class", "svelte-rdh3jv");
-    			add_location(canvas, file$1, 62, 2, 2152);
+    			add_location(canvas, file$1, 64, 2, 2220);
     			if (!src_url_equal(track.src, track_src_value = "captions_es.vtt")) attr_dev(track, "src", track_src_value);
     			attr_dev(track, "kind", "captions");
     			attr_dev(track, "srclang", "es");
     			attr_dev(track, "label", "spanish_captions");
-    			add_location(track, file$1, 64, 4, 2222);
+    			add_location(track, file$1, 66, 4, 2290);
     			attr_dev(video, "id", "camera");
     			video.autoplay = true;
     			video.playsInline = true;
     			attr_dev(video, "class", "svelte-rdh3jv");
-    			add_location(video, file$1, 63, 2, 2177);
+    			add_location(video, file$1, 65, 2, 2245);
     			attr_dev(div0, "id", "actions");
     			attr_dev(div0, "class", "svelte-rdh3jv");
-    			add_location(div0, file$1, 66, 2, 2321);
+    			add_location(div0, file$1, 68, 2, 2389);
     			attr_dev(div1, "class", "container svelte-rdh3jv");
-    			add_location(div1, file$1, 61, 0, 2126);
+    			add_location(div1, file$1, 63, 0, 2194);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2077,55 +2077,54 @@ var app = (function () {
     	return block;
     }
 
-    async function openCamera() {
-    	var _a, _b;
-
-    	let constraints = {
-    		video: { width: 300, height: 200 },
-    		audio: false
-    	};
-
-    	try {
-    		let videoRef = document.getElementById('camera');
-    		const stream = await navigator.mediaDevices.getUserMedia(constraints);
-    		const videoTracks = stream.getVideoTracks();
-    		console.log('使用的设备是:' + videoTracks[0]);
-    		const audioTracks = stream.getAudioTracks();
-    		console.log('使用的设备是:' + audioTracks[0]);
-    		videoRef.srcObject = stream;
-    		videoRef.pause();
-    		videoRef.play();
-    	} catch(error) {
-    		if (error.name === 'ConstraintNotSatisfiedError') {
-    			console.log(`宽:${(_a = constraints.video) === null || _a === void 0
-			? void 0
-			: _a.width} 高:${(_b = constraints.video) === null || _b === void 0
-			? void 0
-			: _b.height} 设备不支持`);
-    		} else if (error.name === 'PermissionDeniedError') {
-    			console.log('没有摄像头和麦克风的使用权限,请点击允许按钮');
-    		}
-
-    		console.log('getUserMedia错误:', error);
-    	}
-    }
-
     function instance$2($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Camera', slots, []);
+    	let videoRef = document.getElementById('camera');
+    	let canvasRef = document.getElementById('canvas');
     	const images = [frontImg1, frontImg2, backImg];
     	let targetIndex = 0;
     	let image = null;
     	let w = document.documentElement.clientWidth;
     	let h = document.documentElement.clientHeight;
 
+    	async function openCamera(constraints) {
+    		try {
+    			const stream = await navigator.mediaDevices.getUserMedia(constraints);
+    			const videoTracks = stream.getVideoTracks();
+    			console.log('使用的设备是:' + videoTracks[0]);
+    			const audioTracks = stream.getAudioTracks();
+    			console.log('使用的设备是:' + audioTracks[0]);
+    			console.log(stream);
+    			videoRef.srcObject = stream;
+
+    			videoRef.onloadedmetadata = function (e) {
+    				videoRef.pause();
+    				videoRef.play();
+    			};
+    		} catch(error) {
+    			if (error.name === 'ConstraintNotSatisfiedError') {
+    				console.log(`宽:${videoRef === null || videoRef === void 0
+				? void 0
+				: videoRef.width} 高:${videoRef === null || videoRef === void 0
+				? void 0
+				: videoRef.height} 设备不支持`);
+    			} else if (error.name === 'PermissionDeniedError') {
+    				console.log('没有摄像头和麦克风的使用权限,请点击允许按钮');
+    			}
+
+    			console.log('getUserMedia错误:', error);
+    		}
+    	}
+
     	onMount(async () => {
-    		await openCamera();
+    		await openCamera({
+    			audio: true,
+    			video: { facingMode: { exact: 'environment' } }
+    		});
     	});
 
     	function capture() {
-    		let videoRef = document.getElementById('camera');
-    		let canvasRef = document.getElementById('canvas');
     		w = canvasRef.width = videoRef.videoWidth;
     		h = canvasRef.height = videoRef.videoHeight;
     		canvasRef.getContext('2d').drawImage(videoRef, 0, 0, w, h);
@@ -2133,15 +2132,21 @@ var app = (function () {
     	}
 
     	function handleCancel() {
-    		let canvasRef = document.getElementById('canvas');
     		canvasRef.getContext('2d').clearRect(0, 0, w, h);
     		images[targetIndex].set('');
     	}
 
-    	function handleOK() {
+    	async function handleOK() {
     		images[targetIndex].set(image);
     		$$invalidate(0, image = null);
     		targetIndex++;
+
+    		if (targetIndex === 3) {
+    			await openCamera({
+    				audio: true,
+    				video: { facingMode: 'user' }
+    			});
+    		}
 
     		if (images[targetIndex]) {
     			handleCancel();
@@ -2162,6 +2167,8 @@ var app = (function () {
     		frontImg1,
     		frontImg2,
     		backImg,
+    		videoRef,
+    		canvasRef,
     		images,
     		targetIndex,
     		image,
@@ -2174,6 +2181,8 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
+    		if ('videoRef' in $$props) videoRef = $$props.videoRef;
+    		if ('canvasRef' in $$props) canvasRef = $$props.canvasRef;
     		if ('targetIndex' in $$props) targetIndex = $$props.targetIndex;
     		if ('image' in $$props) $$invalidate(0, image = $$props.image);
     		if ('w' in $$props) w = $$props.w;

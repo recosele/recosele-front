@@ -3,9 +3,6 @@
   import { push } from 'svelte-spa-router';
   import { frontImg1, frontImg2, backImg } from '@/store/store';
 
-  let videoRef = document.getElementById('camera') as HTMLVideoElement;
-  let canvasRef = document.getElementById('canvas') as HTMLCanvasElement;
-
   const images = [frontImg1, frontImg2, backImg];
   let targetIndex = 0;
   let image = null;
@@ -14,19 +11,20 @@
 
   async function openCamera(constraints) {
     try {
+      let videoRef = document.getElementById('camera') as HTMLVideoElement;
       const stream = await navigator.mediaDevices.getUserMedia(constraints);
       const videoTracks = stream.getVideoTracks();
       console.log('使用的设备是:' + videoTracks[0]);
       const audioTracks = stream.getAudioTracks();
       console.log('使用的设备是:' + audioTracks[0]);
-      console.log(stream);
       videoRef.srcObject = stream;
-      videoRef.onloadedmetadata = function (e) {
+      videoRef.onloadedmetadata = function () {
         videoRef.pause();
         videoRef.play();
       };
     } catch (error) {
       if (error.name === 'ConstraintNotSatisfiedError') {
+        let videoRef = document.getElementById('camera') as HTMLVideoElement;
         console.log(`宽:${videoRef?.width} 高:${videoRef?.height} 设备不支持`);
       } else if (error.name === 'PermissionDeniedError') {
         console.log('没有摄像头和麦克风的使用权限,请点击允许按钮');
@@ -35,25 +33,25 @@
     }
   }
   onMount(async () => {
-    await openCamera({ audio: true, video: { facingMode: { exact: 'environment' } } });
+    await openCamera({ audio: false, video: true });
   });
   function capture() {
+    let videoRef = document.getElementById('camera') as HTMLVideoElement;
+    let canvasRef = document.getElementById('canvas') as HTMLCanvasElement;
     w = canvasRef.width = videoRef.videoWidth;
     h = canvasRef.height = videoRef.videoHeight;
     canvasRef.getContext('2d').drawImage(videoRef, 0, 0, w, h);
     image = canvasRef.toDataURL('image/jpeg');
   }
   function handleCancel() {
+    let canvasRef = document.getElementById('canvas') as HTMLCanvasElement;
     canvasRef.getContext('2d').clearRect(0, 0, w, h);
-    images[targetIndex].set('');
+    image = null;
   }
   async function handleOK() {
     images[targetIndex].set(image);
     image = null;
     targetIndex++;
-    if (targetIndex === 3) {
-      await openCamera({ audio: true, video: { facingMode: 'user' } });
-    }
     if (images[targetIndex]) {
       handleCancel();
     } else {
@@ -64,7 +62,7 @@
 
 <div class="container">
   <canvas id="canvas" />
-  <video id="camera" autoplay playsinline>
+  <video id="camera">
     <track src="captions_es.vtt" kind="captions" srclang="es" label="spanish_captions" />
   </video>
   <div id="actions">

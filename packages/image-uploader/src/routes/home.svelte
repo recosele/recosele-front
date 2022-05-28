@@ -16,7 +16,7 @@
 <main class="main">
   <h1 class="title is-info">オンライン本人確認</h1>
   <h6 class="subtitle is-6">
-    ご用意頂いた「顔写真付本人確認書類」を選択頂き、WEBカメラを使用して撮影shてください。
+    ご用意頂いた「顔写真付本人確認書類」を選択頂き、WEBカメラを使用して撮影してください。
   </h6>
   <div class="card">
     <header class="card-header">

@@ -14,8 +14,7 @@ packages/**/yarn.lock
 packages/**/package-lock.json
 
 # production
-public/prod
-public/dev
+public
 
 # misc
 **/.DS_Store

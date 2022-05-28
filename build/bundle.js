@@ -1890,7 +1890,7 @@ var app = (function () {
     const { console: console_1 } = globals;
     const file$1 = "src/routes/camera.svelte";
 
-    // (73:4) {:else}
+    // (70:4) {:else}
     function create_else_block(ctx) {
     	let button;
     	let mounted;
@@ -1901,7 +1901,7 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "icon";
     			attr_dev(button, "class", "button is-rounded");
-    			add_location(button, file$1, 73, 6, 2604);
+    			add_location(button, file$1, 70, 6, 2459);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -1923,14 +1923,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(73:4) {:else}",
+    		source: "(70:4) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (70:4) {#if image}
+    // (67:4) {#if image}
     function create_if_block(ctx) {
     	let button0;
     	let t1;
@@ -1946,9 +1946,9 @@ var app = (function () {
     			button1 = element("button");
     			button1.textContent = "確定";
     			attr_dev(button0, "class", "button is-rounded");
-    			add_location(button0, file$1, 70, 6, 2430);
+    			add_location(button0, file$1, 67, 6, 2285);
     			attr_dev(button1, "class", "button is-rounded is-success");
-    			add_location(button1, file$1, 71, 6, 2509);
+    			add_location(button1, file$1, 68, 6, 2364);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button0, anchor);
@@ -1978,7 +1978,7 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(70:4) {#if image}",
+    		source: "(67:4) {#if image}",
     		ctx
     	});
 
@@ -2015,22 +2015,22 @@ var app = (function () {
     			if_block.c();
     			attr_dev(canvas, "id", "canvas");
     			attr_dev(canvas, "class", "svelte-rdh3jv");
-    			add_location(canvas, file$1, 64, 2, 2220);
+    			add_location(canvas, file$1, 61, 2, 2075);
     			if (!src_url_equal(track.src, track_src_value = "captions_es.vtt")) attr_dev(track, "src", track_src_value);
     			attr_dev(track, "kind", "captions");
     			attr_dev(track, "srclang", "es");
     			attr_dev(track, "label", "spanish_captions");
-    			add_location(track, file$1, 66, 4, 2290);
+    			add_location(track, file$1, 63, 4, 2145);
     			attr_dev(video, "id", "camera");
     			video.autoplay = true;
     			video.playsInline = true;
     			attr_dev(video, "class", "svelte-rdh3jv");
-    			add_location(video, file$1, 65, 2, 2245);
+    			add_location(video, file$1, 62, 2, 2100);
     			attr_dev(div0, "id", "actions");
     			attr_dev(div0, "class", "svelte-rdh3jv");
-    			add_location(div0, file$1, 68, 2, 2389);
+    			add_location(div0, file$1, 65, 2, 2244);
     			attr_dev(div1, "class", "container svelte-rdh3jv");
-    			add_location(div1, file$1, 63, 0, 2194);
+    			add_location(div1, file$1, 60, 0, 2049);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2118,10 +2118,7 @@ var app = (function () {
     	}
 
     	onMount(async () => {
-    		await openCamera({
-    			audio: true,
-    			video: { facingMode: { exact: 'environment' } }
-    		});
+    		await openCamera({ audio: true, video: true });
     	});
 
     	function capture() {
@@ -2140,13 +2137,6 @@ var app = (function () {
     		images[targetIndex].set(image);
     		$$invalidate(0, image = null);
     		targetIndex++;
-
-    		if (targetIndex === 3) {
-    			await openCamera({
-    				audio: true,
-    				video: { facingMode: 'user' }
-    			});
-    		}
 
     		if (images[targetIndex]) {
     			handleCancel();

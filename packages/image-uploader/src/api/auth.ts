@@ -1,26 +1,29 @@
-import Api from "../services/Api";
+import Api from '../services/Api';
 
-export interface UserLogin {
-  tel: String;
-  password: String;
-  license_no: String;
+export interface CheckUser {
+  userId: String;
 }
-export const userLogin = async (params: UserLogin) => {
+export const checkUser = async (params: CheckUser) => {
   try {
-    const data = await Api.post(`/auth-driver/signin`, params);
+    const data = await Api.get('/users/checkByUserId/' + params?.userId);
     return { data };
   } catch (error) {
     return { error };
   }
 };
 
-export interface UserLogout {
-  truckId: String;
+export interface UploadUserImages {
+  userId: String;
+  front_img1: String;
+  front_img2: String;
+  back_img: String;
+  face_img: String;
 }
-export const userLogout = async (params: UserLogout) => {
+export const uploadUserImages = async (params: UploadUserImages) => {
   try {
-    const data = await Api.post(`/auth-driver/logout`, params);
-    return { data };
+    console.log(params);
+    // const data = await Api.get('/users/checkByUserId/' + params?.userId);
+    return { data: true };
   } catch (error) {
     return { error };
   }

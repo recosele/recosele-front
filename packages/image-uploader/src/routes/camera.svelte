@@ -1,101 +1,229 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { push } from 'svelte-spa-router';
-  import { frontImg1, frontImg2, backImg } from '@/store/store';
+  import { replace, querystring } from 'svelte-spa-router';
+  import { frontImg1, frontImg2, backImg, faceImg } from '@/store/store';
 
-  const images = [frontImg1, frontImg2, backImg];
+  let params = new URLSearchParams($querystring);
+
+  const images = [
+    {
+      label: '证件正面1',
+      content: '将证件正面朝上，按照指示，从正上方进行拍摄。',
+      source: frontImg1,
+    },
+    {
+      label: '证件正面2',
+      content: '将证件正面朝上，按照指示，从斜上方进行拍摄。',
+      source: frontImg2,
+    },
+    {
+      label: '证件背面',
+      content: '将证件背面朝上，按照指示，从正上方进行拍摄。',
+      source: backImg,
+    },
+    {
+      label: '面部',
+      content: '将申请人整个面部和头部露出，按照指示，从正前方进行拍摄。',
+      source: faceImg,
+    },
+  ];
   let targetIndex = 0;
   let image = null;
   let w = document.documentElement.clientWidth;
   let h = document.documentElement.clientHeight;
 
-  async function openCamera(constraints) {
+  let selectedVideoDevice = '';
+  let videoDevices = [];
+  let stream;
+
+  // 自动打开摄像头并加载所有摄像头设备
+  onMount(() => {
+    start()
+      .then(updateDevices)
+      .then((data) => {
+        if (selectedVideoDevice === '' && data.videoDevices.length > 0) {
+          selectedVideoDevice = data.videoDevices[0].deviceId;
+        }
+        videoDevices = data.videoDevices;
+      });
+  });
+
+  // 获取可用摄像头设备
+  async function updateDevices() {
     try {
-      let videoRef = document.getElementById('camera') as HTMLVideoElement;
-      const stream = await navigator.mediaDevices.getUserMedia(constraints);
-      const videoTracks = stream.getVideoTracks();
-      console.log('使用的设备是:' + videoTracks[0]);
-      const audioTracks = stream.getAudioTracks();
-      console.log('使用的设备是:' + audioTracks[0]);
-      videoRef.srcObject = stream;
-      await videoRef.play();
-    } catch (error) {
-      if (error.name === 'ConstraintNotSatisfiedError') {
-        let videoRef = document.getElementById('camera') as HTMLVideoElement;
-        console.log(`宽:${videoRef?.width} 高:${videoRef?.height} 设备不支持`);
-      } else if (error.name === 'PermissionDeniedError') {
-        console.log('没有摄像头和麦克风的使用权限,请点击允许按钮');
+      let videoDevices = [];
+      const devices = await navigator.mediaDevices.enumerateDevices();
+      for (let device of devices) {
+        if (device.kind === 'videoinput') {
+          videoDevices.push(device);
+        }
       }
-      console.log('getUserMedia错误:', error);
+      return Promise.resolve({
+        videoDevices,
+      });
+    } catch (error) {
+      return Promise.reject(error);
     }
   }
-  onMount(async () => {
-    await openCamera({ audio: false, video: { facingMode: { exact: 'environment' } } });
-  });
-  function handleStart() {
-    let videoRef = document.getElementById('camera') as HTMLVideoElement;
-    videoRef.play();
+
+  // 切换摄像头
+  function handleVideoDeviceChange(e) {
+    selectedVideoDevice = e.target.value;
+    if (Boolean(navigator.userAgent.match(/iphone|ipod|iOS|ipad/gi))) {
+      setTimeout(start, 100);
+    } else {
+      closeMediaStream(stream);
+      setTimeout(start, 100);
+    }
   }
+
+  // 打开摄像头
+  async function start() {
+    try {
+      let videoRef = document.getElementById('camera') as HTMLVideoElement;
+      const videoSource = selectedVideoDevice;
+      const constraints = {
+        audio: false,
+        video: {
+          width: 1980,
+          height: 1024,
+          deviceId: videoSource ? { exact: videoSource } : undefined,
+        },
+      };
+      stream = await navigator.mediaDevices.getUserMedia(constraints);
+      videoRef.srcObject = stream;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // 关闭流
+  function closeMediaStream(stream) {
+    if (!stream) return;
+
+    let tracks, i, len;
+    if (stream.getTracks) {
+      tracks = stream.getTracks();
+      for (i = 0, len = tracks.length; i < len; i += 1) {
+        tracks[i].stop();
+      }
+    } else {
+      tracks = stream.getAudioTracks();
+      for (i = 0, len = tracks.length; i < len; i += 1) {
+        tracks[i].stop();
+      }
+
+      tracks = stream.getVideoTracks();
+      for (i = 0, len = tracks.length; i < len; i += 1) {
+        tracks[i].stop();
+      }
+    }
+  }
+
   function handleCapture() {
     let videoRef = document.getElementById('camera') as HTMLVideoElement;
     let canvasRef = document.getElementById('canvas') as HTMLCanvasElement;
+    let modalRef = document.getElementById('image-modal') as HTMLDivElement;
     w = canvasRef.width = videoRef.videoWidth;
     h = canvasRef.height = videoRef.videoHeight;
     canvasRef.getContext('2d').drawImage(videoRef, 0, 0, w, h);
     image = canvasRef.toDataURL('image/jpeg');
+    modalRef.classList.add('is-active');
   }
   function handleCancel() {
     let canvasRef = document.getElementById('canvas') as HTMLCanvasElement;
+    let modalRef = document.getElementById('image-modal') as HTMLDivElement;
+    modalRef.classList.remove('is-active');
     canvasRef.getContext('2d').clearRect(0, 0, w, h);
     image = null;
   }
   async function handleOK() {
-    images[targetIndex].set(image);
+    images?.[targetIndex]?.source?.set(image);
     image = null;
     targetIndex++;
-    if (images[targetIndex]) {
+    if (images?.[targetIndex]) {
       handleCancel();
     } else {
-      push('/result');
+      replace(`/result?${params.toString()}`);
     }
   }
 </script>
 
-<div class="container">
-  <canvas id="canvas" />
-  <video id="camera" autoplay playsinline>
-    <track src="" kind="captions" />
-  </video>
-  <div id="actions">
-    {#if image}
-      <button class="button is-rounded" on:click={handleCancel}>キャンセル</button>
-      <button class="button is-rounded is-success" on:click={handleOK}>確定</button>
-    {:else}
-      <button class="button is-rounded" on:click={handleCapture}>icon</button>
-      <button class="button is-rounded" on:click={handleStart}>start</button>
-    {/if}
+<main class="container">
+  <section class="view">
+    <canvas id="canvas" />
+    <video id="camera" autoplay playsinline>
+      <track src="" kind="captions" />
+    </video>
+  </section>
+  <section class="actions">
+    <h1 class="title is-4 has-text-white">{images?.[targetIndex]?.label}</h1>
+    <h1 class="subtitle is-6 has-text-white">{images?.[targetIndex]?.content}</h1>
+    <div class="field">
+      <label class="label has-text-white">
+        <span>摄像头选择</span>
+        <select
+          class="select is-primary is-small"
+          value={selectedVideoDevice}
+          on:change={handleVideoDeviceChange}
+        >
+          {#each videoDevices as device}
+            <option value={device.deviceId}>
+              {device.label}
+            </option>
+          {/each}
+        </select>
+      </label>
+    </div>
+    <div>
+      <button class="button is-info" on:click={handleCapture}>拍摄</button>
+    </div>
+  </section>
+  <div id="image-modal" class="modal">
+    <div class="modal-background" />
+    <div class="modal-content">
+      <p class="image">
+        <img src={image} alt="" width={w} height={h}/>
+      </p>
+    </div>
+    <footer class="modal-action">
+      <button class="button" on:click={handleCancel}>取消</button>
+      <button class="button is-info" on:click={handleOK}>確定</button>
+    </footer>
   </div>
-</div>
+</main>
 
 <style>
   .container {
     background: #222;
+    width: 100vw;
+    height: 100vh;
+  }
+  .view {
+    position: relative;
+    width: 100vw;
+    height: 60vh;
   }
   #canvas {
-    z-index: 100;
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
   }
   #camera {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
   }
-  #actions {
-    z-index: 1000;
-    bottom: 0;
-    width: 100vw;
-    text-align: center;
-    position: fixed;
+  .actions {
+    padding: 12px;
+  }
+  .modal-action {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 21px;
+    width: 60vw;
   }
 </style>

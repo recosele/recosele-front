@@ -1,6 +1,3 @@
 module.exports = {
-  choices: [
-    "dashboard",
-    "image-uploader"
-  ],
+  choices: ['@recosele/console', '@recosele/verification'],
 };

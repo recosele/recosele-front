@@ -37,14 +37,18 @@ const prompts = [
   // },
 ];
 
-inquirer
-  .prompt(prompts)
-  .then((answers) => {
-    const packages = answers.all ? choices : answers.packages;
-    console.log(chalk.green(`正在 build ${packages.length}个项目，请等待...`));
-    for (let j = 0; j < packages.length; j++) {
-      console.log(chalk.green(`正在处理第${j + 1}个项目: ` + packages[j]));
-      spawnSync('yarn', ['workspace', packages[j], 'build'], { stdio: 'inherit' });
-    }
-  })
-  .catch((error) => console.log(error));
+if (!!process.argv[2]) {
+  spawnSync('yarn', ['workspace', process.argv[2], 'build'], { stdio: 'inherit' });
+} else {
+  inquirer
+    .prompt(prompts)
+    .then((answers) => {
+      const packages = answers.all ? choices : answers.packages;
+      console.log(chalk.green(`正在 build ${packages.length}个项目，请等待...`));
+      for (let j = 0; j < packages.length; j++) {
+        console.log(chalk.green(`正在处理第${j + 1}个项目: ` + packages[j]));
+        spawnSync('yarn', ['workspace', packages[j], 'build'], { stdio: 'inherit' });
+      }
+    })
+    .catch((error) => console.log(error));
+}

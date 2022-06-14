@@ -1,0 +1,39 @@
+name: deploy [console] to s3
+on:
+  push:
+    branches: [ deploy ]
+    paths: 
+      - "packages/console/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install packages
+        run: yarn install
+      - name: Run yarn build
+        run: yarn build @recosele/console
+      - name: Upload build result
+        uses: actions/upload-artifact@v1
+        with:
+          name: build
+          path: packages/console/public/
+
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download build result
+        uses: actions/download-artifact@v2
+        with:
+          name: build
+          path: packages/console/public/
+      - name: Publish to AWS S3
+        uses: opspresso/action-s3-sync@master
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: "ap-northeast-1"
+          FROM_PATH: "packages/console/public/"
+          DEST_PATH: "s3://console.recosele.com"

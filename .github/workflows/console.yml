@@ -1,7 +1,7 @@
 name: deploy [console] to s3
 on:
   push:
-    branches: [ deploy ]
+    branches: [ master ]
     paths: 
       - "packages/console/**"
 

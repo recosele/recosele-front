@@ -12,6 +12,7 @@ export default defineConfig({
   history: {
     type: 'hash',
   },
+  title: 'Recosele',
   ignoreMomentLocale: true,
   // dynamicImport: {},
   externals: {

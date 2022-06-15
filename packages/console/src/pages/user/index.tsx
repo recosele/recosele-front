@@ -78,7 +78,9 @@ const StatusInquiry: React.FC = () => {
           width={100}
           title="审核状态"
           dataIndex="verify_status"
-          render={(v) => <Tag color={verifyStatus[v].color}>{verifyStatus[v].label}</Tag>}
+          render={(v) => (
+            <Tag color={verifyStatus[v || 0]?.color}>{verifyStatus[v || 0].label}</Tag>
+          )}
         />
         <Table.Column sorter width={150} title="微信ID" dataIndex="userId" />
         <Table.Column sorter width={800} title="用户名" dataIndex="name" />

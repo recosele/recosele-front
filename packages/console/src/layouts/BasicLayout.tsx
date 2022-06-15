@@ -38,7 +38,6 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
           theme="dark"
           mode="inline"
           selectedKeys={[history?.location?.pathname]}
-          defaultOpenKeys={['/cts']}
           items={props.menus}
         />
       </Layout.Sider>

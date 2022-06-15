@@ -5,9 +5,7 @@ import BasicLayout from './BasicLayout';
 
 const Layout: React.FC = (props) => {
   const history = useHistory();
-  const isFull = ['/login', '/cts/check/'].some((item: any) =>
-    history?.location?.pathname?.startsWith(item),
-  );
+  const isFull = ['/login'].some((item: any) => history?.location?.pathname?.startsWith(item));
   return isFull ? (
     <>{props?.children}</>
   ) : (

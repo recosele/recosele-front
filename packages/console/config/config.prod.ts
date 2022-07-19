@@ -3,7 +3,7 @@ import { defineConfig } from 'umi';
 export default defineConfig({
   define: {
     'process.env': {
-      ApiURL: 'https://api.sclogi.jp',
+      ApiURL: 'http://api.recosele.com',
     },
   },
   outputPath: '/public',
